@@ -216,7 +216,12 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
 #v-presentes .grid{margin-top:1.4cqw;width:78cqw;display:flex;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding-block:1.4cqw}
 #v-presentes .grid::-webkit-scrollbar{display:none}
 .pg{flex:0 0 100%;scroll-snap-align:start;display:flex;justify-content:center}
-.pggrid{display:grid;grid-template-columns:repeat(4,17.3cqw);gap:1.5cqw 2.05cqw;align-content:start}
+.pggrid{display:grid;grid-template-columns:repeat(3,24.5cqw);gap:1.5cqw 1.75cqw;align-content:start}
+.pggrid .cota{width:24.5cqw;gap:.85cqw;padding:6.2cqw 1.7cqw 6cqw}
+.pggrid .cota svg{width:8.5cqw;height:8.5cqw}
+.pggrid .cota .n{font-size:2.9cqw}
+.pggrid .cota .v{font-size:3.8cqw}
+.pggrid .cota .v.livre{font-size:2.7cqw!important}
 .pager{display:flex;align-items:center;justify-content:center;gap:3cqw;margin-top:.6cqw}
 .pager button{width:7.4cqw;height:7.4cqw;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:var(--magenta);border:.3cqw solid var(--silver);background:rgba(255,245,249,.9)}
 .pager button svg{width:3.4cqw;height:3.4cqw}
@@ -449,8 +454,8 @@ const icon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="url(#ag)" stroke
 /* ======================== GRADE ======================== */
 const cards = CONFIG.cotas.map((c,i) =>
   `<button class="cota" type="button" data-i="${i}" aria-label="Presentear: ${esc(c.nome)}, ${brl(c.valor)}">${icon(c.icone)}<span class="n">${esc(c.nome)}</span><span class="v">${brl(c.valor)}</span></button>`
-).concat(`<button class="cota" type="button" data-i="livre" aria-label="Presente livre: escolha o valor">${icon("coracao")}<span class="n">Presente livre</span><span class="v" style="font-size:1.9cqw;letter-spacing:.04em">VOCÊ ESCOLHE</span></button>`);
-const POR_PAGINA = 12, nPag = Math.ceil(cards.length / POR_PAGINA);
+).concat(`<button class="cota" type="button" data-i="livre" aria-label="Presente livre: escolha o valor">${icon("coracao")}<span class="n">Presente livre</span><span class="v livre" style="font-size:1.9cqw;letter-spacing:.04em">VOCÊ ESCOLHE</span></button>`);
+const POR_PAGINA = 6, nPag = Math.ceil(cards.length / POR_PAGINA);
 let pagesHtml = "";
 for(let k = 0; k < nPag; k++){
   const fatia = cards.slice(k*POR_PAGINA, (k+1)*POR_PAGINA).map((h,j) => h.replace('<button class="cota"', `<button class="cota" style="--i:${j}"`)).join("");
