@@ -160,7 +160,7 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
 @keyframes viewIn{from{opacity:0;transform:translateY(2cqw)}to{opacity:1;transform:none}}
 .gemh{width:13cqw;height:auto;margin-top:1cqw}
 .vtitle{margin:-1cqw 0 -1.4cqw;font-family:var(--script);font-weight:400;font-size:11cqw;line-height:1.15;color:var(--magenta)}
-.info{width:100%;display:flex;flex-direction:column;gap:1.8cqw;margin-top:1cqw}
+.info{width:100%;display:flex;flex-direction:column;gap:1.5cqw;margin-top:.6cqw}
 .info .row{display:flex;align-items:center;gap:3cqw;text-align:left;padding:1.6cqw 3cqw;border-radius:2.6cqw;background:rgba(255,246,250,.72);box-shadow:0 0 0 .25cqw #d9dce1,0 0 0 .6cqw rgba(255,255,255,.8),0 0 0 .85cqw #a9aeb6}
 .info .ic{flex:none;width:9cqw;height:9cqw;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#fbe4ee 70%);box-shadow:0 0 0 .25cqw #c5c9cf}
 .info .ic svg{width:5.2cqw;height:5.2cqw}
@@ -168,9 +168,17 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
 .info p{margin:.2cqw 0 0;font-size:3.6cqw;line-height:1.25;color:var(--ink)}
 .duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.4cqw;width:100%;margin-top:.6cqw}
 .duo .btn{min-height:8.4cqw;font-size:2.5cqw}
-.note{display:flex;align-items:center;gap:3cqw;width:100%;text-align:left;margin-top:.4cqw}
-.note p{margin:0;font-size:3.2cqw;line-height:1.3;color:var(--ink)}
-.note b{display:block;font-weight:700;font-size:2.4cqw;letter-spacing:.16em;color:var(--magenta)}
+.note{display:flex;align-items:center;gap:3cqw;width:100%;box-sizing:border-box;text-align:left;margin-top:.8cqw;padding:2.4cqw 3cqw;border-radius:2.6cqw;
+  background:linear-gradient(135deg,#fff 0%,#fff4f8 100%);box-shadow:0 0 0 .45cqw var(--magenta),0 0 0 1.1cqw #fff,0 0 0 1.4cqw #a9aeb6,0 1.6cqw 3cqw rgba(125,11,67,.25);animation:notePulse 2.8s ease-in-out infinite}
+.note p{margin:0;font-size:3.35cqw;line-height:1.28;color:var(--ink)}
+.note p strong{color:var(--magenta);font-weight:700}
+.note b{display:block;margin-bottom:.4cqw;font-weight:700;font-size:2.7cqw;letter-spacing:.16em;color:var(--magenta)}
+.note .nopink{width:10cqw;height:10cqw}
+#v-festa .gemh{display:none}
+#v-festa .vtitle{margin-top:.6cqw}
+#v-festa .rsvp{margin-top:auto;padding-top:1.6cqw}
+@keyframes notePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@media (prefers-reduced-motion:reduce){.note{animation:none}}
 .nopink{position:relative;flex:none;width:8cqw;height:8cqw;border-radius:50%;background:#f2a6c1;box-shadow:0 0 0 .5cqw #fff,0 0 0 .8cqw var(--silver)}
 .nopink::after{content:"";position:absolute;left:50%;top:-1cqw;bottom:-1cqw;width:.5cqw;background:var(--magenta);transform:translateX(-50%) rotate(45deg);border-radius:1cqw}
 .rsvp{width:100%;display:flex;flex-direction:column;gap:1.4cqw;margin-top:auto}
@@ -273,7 +281,7 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
         <a class="btn" id="lnkMaps" target="_blank" rel="noopener">GOOGLE MAPS</a>
         <a class="btn ghost" id="lnkWaze" target="_blank" rel="noopener">WAZE</a>
       </div>
-      <div class="note"><span class="nopink" aria-hidden="true"></span><p><b>DICA DE TRAJE</b>Nesta noite, o rosa é a cor da princesa: venha com qualquer outra cor.</p></div>
+      <div class="note"><span class="nopink" aria-hidden="true"></span><p><b>ATENÇÃO AO TRAJE</b><strong>Não use nenhum tom de rosa.</strong> Nesta noite, o rosa é a cor da princesa: venha com qualquer outra cor.</p></div>
       <form class="rsvp" id="rsvpForm" novalidate>
         <p class="rsvp-t">CONFIRME SUA PRESENÇA ATÉ 25/11</p>
         <div class="rsvp-row">
@@ -335,7 +343,7 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
 
         <div class="step" id="stepValor" hidden>
           <label class="f" for="livreVal">QUAL VALOR VOCÊ QUER PRESENTEAR?
-            <span class="money"><span>R$</span><input type="number" id="livreVal" inputmode="numeric" min="100" step="10" placeholder="100"></span>
+            <span class="money"><span>R$</span><input type="number" id="livreVal" inputmode="numeric" min="60" step="10" placeholder="60"></span>
           </label>
           <p class="err" id="livreErr" hidden></p>
           <button class="btn" type="button" id="livreGo">CONTINUAR</button>
@@ -380,30 +388,20 @@ const CONFIG = {
   endereco: "Talina Eventos, R. Pedro Suzart, 1370 - Brasília, Feira de Santana - BA, 44088-276",
   musica: "musica.mp3",          // vazio = sem música
   aniversariante: "Ana Julia",
-  livreMinimo: 100,
+  livreMinimo: 60,
   /* cartao: link de pagamento com cartão de cada cota (Mercado Pago, InfinitePay etc.). Vazio = botão escondido. */
   cotas: [
-    { nome: "Kit Skincare", valor: 100, icone: "skincare", cartao: "" },
-    { nome: "Kit Unhas de Princesa", valor: 120, icone: "unhas", cartao: "" },
-    { nome: "Kit Cabelo dos Sonhos", valor: 140, icone: "cabelo", cartao: "" },
-    { nome: "Kit Make da Debutante", valor: 160, icone: "make", cartao: "" },
-    { nome: "Kit Body Splash", valor: 180, icone: "splash", cartao: "" },
-    { nome: "Kit Perfumaria", valor: 200, icone: "perfume", cartao: "" },
-    { nome: "Kit Spa Day", valor: 220, icone: "spa", cartao: "" },
-    { nome: "Kit Pijama & Conforto", valor: 240, icone: "pijama", cartao: "" },
-    { nome: "Kit Livros & Leitura", valor: 260, icone: "livro", cartao: "" },
-    { nome: "Kit Look Perfeito", valor: 280, icone: "vestido", cartao: "" },
-    { nome: "Kit Sapato dos Sonhos", valor: 300, icone: "sapato", cartao: "" },
-    { nome: "Kit Bolsa & Acessórios", valor: 320, icone: "bolsa", cartao: "" },
-    { nome: "Kit Óculos de Sol", valor: 340, icone: "oculos", cartao: "" },
-    { nome: "Kit Dia de Compras", valor: 360, icone: "sacola", cartao: "" },
-    { nome: "Kit Relógio", valor: 380, icone: "relogio", cartao: "" },
-    { nome: "Kit Joias", valor: 400, icone: "joia", cartao: "" },
-    { nome: "Kit Tecnologia", valor: 420, icone: "fone", cartao: "" },
-    { nome: "Kit Caixa de Som", valor: 440, icone: "som", cartao: "" },
-    { nome: "Kit Câmera Instantânea", valor: 460, icone: "camera", cartao: "" },
-    { nome: "Kit Book de Fotos", valor: 480, icone: "foto", cartao: "" },
-    { nome: "Kit Viagem dos Sonhos", valor: 500, icone: "aviao", cartao: "" }
+    { nome: "Kit Skincare", valor: 60, icone: "skincare", cartao: "" },
+    { nome: "Kit Make", valor: 80, icone: "make", cartao: "" },
+    { nome: "Kit Body Splash", valor: 120, icone: "splash", cartao: "" },
+    { nome: "Kit Perfumaria", valor: 150, icone: "perfume", cartao: "" },
+    { nome: "Kit Pijama & Conforto", valor: 100, icone: "pijama", cartao: "" },
+    { nome: "Kit Livros & Leitura", valor: 70, icone: "livro", cartao: "" },
+    { nome: "Kit Look", valor: 100, icone: "vestido", cartao: "" },
+    { nome: "Kit Sapato", valor: 200, icone: "sapato", cartao: "" },
+    { nome: "Kit Bolsa & Acessórios", valor: 120, icone: "bolsa", cartao: "" },
+    { nome: "Kit Joias", valor: 100, icone: "joia", cartao: "" },
+    { nome: "Kit Tecnologia", valor: 150, icone: "fone", cartao: "" }
   ]
 };
 const ICONS = {
@@ -473,6 +471,7 @@ track.addEventListener("scroll", () => { clearTimeout(syncPager._t); syncPager._
 pgPrev.addEventListener("click", () => track.scrollTo({left: (pageIdx()-1)*track.clientWidth, behavior: "smooth"}));
 pgNext.addEventListener("click", () => track.scrollTo({left: (pageIdx()+1)*track.clientWidth, behavior: "smooth"}));
 syncPager();
+if(nPag < 2){ pgPrev.hidden = true; pgNext.hidden = true; dotsEl.hidden = true; }
 
 /* ======================== ABERTURA ======================== */
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
