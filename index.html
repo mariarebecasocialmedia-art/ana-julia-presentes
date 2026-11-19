@@ -229,6 +229,9 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
 .pager button:focus-visible{outline:.4cqw solid var(--magenta);outline-offset:.3cqw}
 .pmid{display:flex;flex-direction:column;align-items:center;gap:1cqw}
 .pmid .foot{margin:0}
+.mais{display:inline-flex;align-items:center;gap:1cqw;padding:1.2cqw 3.2cqw;border-radius:5cqw;text-decoration:none;font-weight:700;font-size:2.35cqw;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--magenta),var(--magenta-deep));box-shadow:0 0 0 .3cqw #fff,0 0 0 .6cqw var(--silver),0 1cqw 2cqw rgba(125,11,67,.3);animation:notePulse 2.8s infinite;white-space:nowrap}
+.mais svg{width:2.6cqw;height:2.6cqw}
+.mais:focus-visible{outline:.4cqw solid var(--magenta);outline-offset:.5cqw}
 .dots{display:flex;gap:1.2cqw}
 .dots i{width:1.6cqw;height:1.6cqw;border-radius:50%;background:#e9b9cc;box-shadow:0 0 0 .2cqw #fff}
 .dots i.on{background:var(--magenta)}
@@ -306,7 +309,7 @@ label.f input:focus,label.f textarea:focus{outline:.4cqw solid #e57aa8;outline-o
       <div class="grid" id="grid" aria-label="Cotas de presente"></div>
       <div class="pager">
         <button type="button" id="pgPrev" aria-label="Cotas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <div class="pmid"><p class="foot">TOQUE NA COTA PARA PRESENTEAR</p><div class="dots" id="dots" aria-hidden="true"></div></div>
+        <div class="pmid"><p class="foot" id="pFoot">TOQUE NA COTA PARA PRESENTEAR</p><a class="mais" id="maisPresentes" href="https://sites.wedy.com/xv-ana-julia-wso2" target="_blank" rel="noopener" hidden>Clique aqui para ver mais presentes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a><div class="dots" id="dots" aria-hidden="true"></div></div>
         <button type="button" id="pgNext" aria-label="Mais cotas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </section>
@@ -471,6 +474,7 @@ function syncPager(){
   const k = pageIdx();
   [...dotsEl.children].forEach((d,j) => d.classList.toggle("on", j === k));
   pgPrev.disabled = k <= 0; pgNext.disabled = k >= nPag - 1;
+  const ult = k >= nPag - 1; document.getElementById("maisPresentes").hidden = !ult; document.getElementById("pFoot").hidden = ult;
 }
 track.addEventListener("scroll", () => { clearTimeout(syncPager._t); syncPager._t = setTimeout(syncPager, 60); }, {passive:true});
 pgPrev.addEventListener("click", () => track.scrollTo({left: (pageIdx()-1)*track.clientWidth, behavior: "smooth"}));
